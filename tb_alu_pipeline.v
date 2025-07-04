@@ -7,7 +7,7 @@ module tb_alu_pipeline;
     wire [7:0] result;
 
     // Instantiate ALU Pipeline
-    alu_pipeline uut (
+    alu_pipeline dut (
         .clk(clk),
         .reset(reset),
         .result(result)
@@ -24,6 +24,11 @@ module tb_alu_pipeline;
         $display("Time\tResult");
         $monitor("%0dns\t%d", $time, result);
         
+        // Waveform dump setup
+        $dumpfile("dump.vcd");
+        $dumpvars(0, tb_alu_pipeline);
+        $dumpvars(0, dut);
+
         reset = 1;
         #10;
         reset = 0;
