@@ -1,4 +1,4 @@
-Custom ALU with Pipelining – Verilog RTL Design
+**#Custom ALU with Pipelining – Verilog RTL Design**
 🧠 Project Overview
 This project implements a custom Arithmetic Logic Unit (ALU) with a 4-stage pipeline architecture using Verilog. The ALU supports basic arithmetic and logical operations and is structured into classic pipeline stages: Fetch, Decode, Execute, and Writeback.
 
