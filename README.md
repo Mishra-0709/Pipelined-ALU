@@ -1,6 +1,6 @@
 # 🔧 Custom ALU with Pipelining – Verilog RTL Design
 
-## 🧠 Project Overview
+##  Project Overview
 
 This project implements a **custom Arithmetic Logic Unit (ALU)** with a **4-stage pipeline architecture** using **Verilog**.  
 The ALU supports basic arithmetic and logical operations and is structured into classic pipeline stages:  
@@ -10,7 +10,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## ✅ Features
+##  Features
 
 - 4-stage pipeline: IF, ID, EX, WB  
 - ALU operations: `ADD`, `SUB`, `AND`, `OR`  
@@ -20,7 +20,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## 📁 File Structure
+##  File Structure
 
 | File                 | Description                                |
 |----------------------|--------------------------------------------|
@@ -30,7 +30,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## 🌀 Pipeline Description
+##  Pipeline Description
 
 1. **IF (Instruction Fetch)** – Fetches instruction from instruction memory  
 2. **ID (Instruction Decode)** – Extracts opcode and operands  
@@ -39,14 +39,14 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## 📈 Simulation Waveform
+##  Simulation Waveform
 
 > Example waveform from EPWave:
 
 ![image](https://github.com/user-attachments/assets/2610f34a-fdbd-4473-a85d-108423a3ac02)
 
 
-### 🔍 Signal Descriptions
+###  Signal Descriptions
 
 | Signal      | Description                        |
 |-------------|------------------------------------|
@@ -62,7 +62,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-### ✅ Waveform Observations
+###  Waveform Observations
 
 - At ~15ns: First instruction (`ADD 10 + 5`) is executed → `result = 15`
 - Subsequent instructions (`SUB`, `AND`, `OR`) pass through the pipeline
@@ -70,7 +70,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## 🧮 ALU Operation Table
+##  ALU Operation Table
 
 | Opcode | Binary   | Operation | Description        |
 |--------|----------|-----------|--------------------|
@@ -81,7 +81,7 @@ Simulation is performed using **EDA Playground**, and waveforms are analyzed usi
 
 ---
 
-## ▶️ How to Simulate
+##  How to Simulate
 
 You can run the design on [EDA Playground](https://edaplayground.com):
 
