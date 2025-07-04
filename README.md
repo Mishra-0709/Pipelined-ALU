@@ -1,74 +1,97 @@
-**#Custom ALU with Pipelining – Verilog RTL Design**
-🧠 Project Overview
-This project implements a custom Arithmetic Logic Unit (ALU) with a 4-stage pipeline architecture using Verilog. The ALU supports basic arithmetic and logical operations and is structured into classic pipeline stages: Fetch, Decode, Execute, and Writeback.
+# 🔧 Custom ALU with Pipelining – Verilog RTL Design
 
-The design was simulated using EDA Playground with signal waveform output enabled via .vcd dump. The functionality was verified by monitoring the internal pipeline registers and the final output.
+## 🧠 Project Overview
 
-🔧 Features
-✅ 4-stage pipeline: IF, ID, EX, WB
+This project implements a **custom Arithmetic Logic Unit (ALU)** with a **4-stage pipeline architecture** using **Verilog**.  
+The ALU supports basic arithmetic and logical operations and is structured into classic pipeline stages:  
+**Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), and Writeback (WB).**
 
-✅ ALU operations: ADD, SUB, AND, OR
+Simulation is performed using **EDA Playground**, and waveforms are analyzed using **EPWave**.
 
-✅ Simple instruction format: {opcode[1:0], src1[7:0], src2[7:0]}
+---
 
-✅ Pipeline registers: IF_ID, ID_EX, EX_WB
+## ✅ Features
 
-✅ Verified with waveform analysis using EPWave
+- 4-stage pipeline: IF, ID, EX, WB  
+- ALU operations: `ADD`, `SUB`, `AND`, `OR`  
+- Instruction format: `{opcode[1:0], src1[7:0], src2[7:0]}`  
+- Pipeline registers: `IF_ID`, `ID_EX`, `EX_WB`  
+- Verified using waveform output
 
-📦 File Structure
-File	Description
-alu_pipeline.v	RTL module for pipelined ALU
-tb_alu_pipeline.v	Testbench for simulation and waveform generation
-dump.vcd	Generated during simulation for EPWave waveform viewing
+---
 
-🌀 Pipeline Design
-The pipeline includes the following stages:
+## 📁 File Structure
 
-IF (Instruction Fetch) – Fetches instruction from a small preloaded instruction memory.
+| File                 | Description                                |
+|----------------------|--------------------------------------------|
+| `alu_pipeline.v`     | RTL design of pipelined ALU                |
+| `tb_alu_pipeline.v`  | Verilog testbench with waveform dumping    |
+| `dump.vcd`           | VCD waveform file (generated after sim)    |
 
-ID (Instruction Decode) – Extracts opcode, source operands.
+---
 
-EX (Execute) – ALU performs the operation.
+## 🌀 Pipeline Description
 
-WB (Writeback) – Result is stored in the output register.
+1. **IF (Instruction Fetch)** – Fetches instruction from instruction memory  
+2. **ID (Instruction Decode)** – Extracts opcode and operands  
+3. **EX (Execute)** – Performs ALU operation  
+4. **WB (Writeback)** – Stores result in output register
 
-📈 Simulation Waveform
-Below is the simulation waveform of the ALU with 4 instructions executed sequentially:
-![image](https://github.com/user-attachments/assets/179bc0b8-62a6-4dbe-a7ea-ef541f868645)
+---
 
-🔍 Waveform Explanation:
-Signal	Description
-clk	System clock
-reset	Active-high reset
-pc	Program counter for instruction memory
-IF_ID	Pipeline register between IF and ID
-ID_EX	Pipeline register between ID and EX
-alu_out	Output of ALU (goes to WB stage)
-result	Final output of pipeline (written at WB)
-src1, src2	Source operands decoded from instruction
-opcode	ALU operation selector
+## 📈 Simulation Waveform
 
-✅ Observations:
-At t ≈ 15ns, the first instruction (ADD 10 + 5) is executed, result = 15.
+> Example waveform from EPWave:
 
-Successive instructions (SUB, AND, OR) follow through the pipeline with 1 instruction per 10ns cycle.
+![image](https://github.com/user-attachments/assets/2610f34a-fdbd-4473-a85d-108423a3ac02)
 
-The result updates every clock cycle after the initial latency, showing proper pipelining.
 
-🧪 Supported ALU Operations
-Opcode	Binary	Operation	Description
-00	2'b00	ADD	Addition of operands
-01	2'b01	SUB	Subtraction
-10	2'b10	AND	Bitwise AND
-11	2'b11	OR	Bitwise OR
+### 🔍 Signal Descriptions
 
-▶️ How to Run
-You can simulate this design on EDA Playground:
+| Signal      | Description                        |
+|-------------|------------------------------------|
+| `clk`       | System clock                       |
+| `reset`     | Active-high synchronous reset      |
+| `pc`        | Program counter                    |
+| `IF_ID`     | IF to ID pipeline register         |
+| `ID_EX`     | ID to EX pipeline register         |
+| `alu_out`   | ALU computation result             |
+| `result`    | Final output at WB stage           |
+| `src1`, `src2` | Source operands                 |
+| `opcode`    | Operation code for ALU             |
 
-Paste the Verilog files into the editor
+---
 
-Select Icarus Verilog or VCS
+### ✅ Waveform Observations
 
-Make sure the testbench has $dumpfile("dump.vcd"); $dumpvars(0, tb_alu_pipeline);
+- At ~15ns: First instruction (`ADD 10 + 5`) is executed → `result = 15`
+- Subsequent instructions (`SUB`, `AND`, `OR`) pass through the pipeline
+- `result` updates every clock after initial pipeline delay (indicating correct pipelining)
 
-Click Run and inspect the waveform using EPWave
+---
+
+## 🧮 ALU Operation Table
+
+| Opcode | Binary   | Operation | Description        |
+|--------|----------|-----------|--------------------|
+| `00`   | `2'b00`  | `ADD`     | Add src1 and src2  |
+| `01`   | `2'b01`  | `SUB`     | Subtract src2 from src1 |
+| `10`   | `2'b10`  | `AND`     | Bitwise AND        |
+| `11`   | `2'b11`  | `OR`      | Bitwise OR         |
+
+---
+
+## ▶️ How to Simulate
+
+You can run the design on [EDA Playground](https://edaplayground.com):
+
+1. Copy `alu_pipeline.v` to the design window  
+2. Copy `tb_alu_pipeline.v` to the testbench window  
+3. Select **Icarus Verilog** or **Synopsys VCS** as the simulator  
+4. Run the simulation and view waveforms in **EPWave**
+
+Ensure these lines are in the testbench:
+
+```verilog
+$dumpfile("dump.vcd");
+$dumpvars(0, tb_alu_pipeline);
